@@ -33,6 +33,11 @@ public class SaleTests extends BaseTest{
         infoProduct.ClickAddToCart();
         wait.until(ExpectedConditions.alertIsPresent());
         driver.switchTo().alert().accept();
+        naviPage.ClickHome();
+        productPage.ClickOnNexus();
+        infoProduct.ClickAddToCart();
+        wait.until(ExpectedConditions.alertIsPresent());
+        driver.switchTo().alert().accept();
         naviPage.ClickCart();
         cartPage.ClickPlaceOrder();
         cartPage.name.sendKeys("Marko");
@@ -46,6 +51,33 @@ public class SaleTests extends BaseTest{
         Assert.assertEquals(cartPage.GetInfoMessage(),"Thank you for your purchase!");
 
     }
+    @Test
+    public void BuyTwoProductsOnePhoneAndOneLaptop(){
+        productPage.ClickOnSamsung();
+        infoProduct.ClickAddToCart();
+        wait.until(ExpectedConditions.alertIsPresent());
+        driver.switchTo().alert().accept();
+        naviPage.ClickHome();
+        naviPage.ClickLaptop();
+        productPage.ClickOnSonyVaioi5();
+        infoProduct.ClickAddToCart();
+        wait.until(ExpectedConditions.alertIsPresent());
+        driver.switchTo().alert().accept();
+        naviPage.ClickCart();
+        cartPage.ClickPlaceOrder();
+        cartPage.name.sendKeys("Marko");
+        cartPage.country.sendKeys("Srbija");
+        cartPage.city.sendKeys("Beograd");
+        cartPage.card.sendKeys("132465789");
+        cartPage.month.sendKeys("April");
+        cartPage.year.sendKeys("2023");
+        cartPage.purchaseBtn.click();
+
+        Assert.assertEquals(cartPage.GetInfoMessage(),"Thank you for your purchase!");
+
+    }
+
+
 
     @AfterMethod
     public void After(){
